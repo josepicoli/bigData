@@ -1,17 +1,11 @@
 import pandas as pd
 
-columns = {
-    'id', 'pesid', 'sentido_via', 'tracado_via', 'tipo_pista', 'uso_solo',
-    'id_veiculo', 'ano_fabricacao_veiculo', 'tipo_envolvido', 'latitude',
-    'longitude', 'regional', 'delegacia', 'uop', 'marca', 'fase_dia', 
-    'tipo_veiculo', 'estado_fisico', 'idade', 'sexo'
-}
-
-exception = {
-    'pesid', 'id_veiculo', 'ano_fabricacao_veiculo', 'tipo_envolvido',
-    'marca', 'tipo_veiculo', 'estado_fisico', 'idade', 'sexo'
-}
-
+columns = [
+    'data_inversa', 'dia_semana', 'horario', 'br', 'km', 'municipio', 
+    'causa_acidente', 'tipo_acidente', 'classificacao_acidente', 
+    'condicao_metereologica', 'ilesos', 'feridos_leves', 'feridos_graves', 
+    'mortos', 'uf'
+]
 
 map = {
     1:'janeiro',
@@ -31,12 +25,7 @@ map = {
 for i in range(19, 25):
     df = pd.read_csv(f'data/acidentes20{i}.csv', sep=';', encoding='Windows-1252')
     
-    if i == 23:
-        columns_temp = columns.copy()
-        [columns_temp.add(i) for i in ('veiculos', 'pessoas', 'ignorados', 'feridos')]
-        df.drop(columns= columns_temp.difference(exception), inplace=True)
-    else:
-        df.drop(columns= columns, inplace=True)
+    df = df.filter(items= columns)
     
     df = df[df['uf'] == 'PI']
     df.drop(columns=['uf'], inplace=True)

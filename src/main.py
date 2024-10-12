@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt 
 
-tabela = pd.read_csv("acidentes2024.csv", sep=";", encoding="Windows-1252")
+tabela = pd.read_csv("data/acidentes2024.csv", sep=";", encoding="Windows-1252")
 
 estadoDesejado = "PI"
 tabelaFiltrada = tabela[tabela["uf"] == estadoDesejado]
