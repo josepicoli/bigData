@@ -22,7 +22,7 @@ map = {
     12:'dezembro'
 }
 
-for i in range(19, 24):
+for i in range(19, 25):
     df = pd.read_csv(f'data/acidentes20{i}.csv', sep=';', encoding='Windows-1252')
     
     df = df.filter(items= columns)
@@ -43,6 +43,7 @@ df_2020 = pd.read_csv(f'filtered_data/acidentes2020_filtrado.csv', sep=';')
 df_2021 = pd.read_csv(f'filtered_data/acidentes2021_filtrado.csv', sep=';')
 df_2022 = pd.read_csv(f'filtered_data/acidentes2022_filtrado.csv', sep=';')
 df_2023 = pd.read_csv(f'filtered_data/acidentes2023_filtrado.csv', sep=';')
+df_2024 = pd.read_csv(f'filtered_data/acidentes2024_filtrado.csv', sep=';')
 
-df_full = pd.concat([df_2019, df_2020, df_2021, df_2022, df_2023], ignore_index = True)
+df_full = pd.concat([df_2019, df_2020, df_2021, df_2022, df_2023, df_2024], ignore_index = True)
 df_full.to_csv('filtered_data/acidentes_filtrado_full.csv', sep=';', encoding='utf-8', index=False)
